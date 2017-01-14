@@ -1,0 +1,1 @@
+/home/jmm/projects/lino_polls/lino_polls/manage.py
