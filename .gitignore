@@ -1,0 +1,8 @@
+a (virtualenv for project which should stay in local machine)
+*.DS_Store
+*.pyc
+__pycache__
+*~
+db.sqlite3      # Don't want this in Github or production environment.
+/static
+
