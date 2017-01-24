@@ -1,3 +1,31 @@
+from lino.projects.std.settings import *
+
+class Site(Site):
+
+	title = "Cool Polls"
+
+	anonymous_user_type = '900'
+	demo_fuxtures = ['demo']
+	
+	def get_installed_apps(self):
+		yield super(Site, self).get_installed_apps()
+		yield 'polls'
+		
+	def setup_menu(self, utype, main):
+		m = main.add_menu("polls", "Polls")
+		m.add_action('polls.Questions')
+		m.add_action('polls.Choice')
+		super(Site, self).setup_menu(utype, main)
+
+SITE = Site(globals())
+
+# Your local settings here
+
+DEBUG = True
+
+
+
+
 """
 Django settings for lino_polls project.
 
@@ -9,7 +37,7 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-
+"""
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -120,3 +148,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+"""
