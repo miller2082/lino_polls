@@ -15,10 +15,82 @@ class Question(models.Model):
 		help_text="Whether this poll should not be shown in the main window.",
 		default=False)
 
-		# Pick up from here
+	class Meta:
+		verbose_name = 'Question'
+		verbose_name_plural = 'Questions'
+		
+	def __str__(self):
+		return self.question_text
+
+	def was_published_recently(self):
+		return self.pub_date >= timezone.now() - datetime.timedelta(day=1)
+		
 
 @python_2_unicode_compatible
 class Choice(models.Model):
 	question = models.ForeignKey(Question, on_delete=models.CASCADE)
 	choice_text = models.CharField(max_length=200)
 	votes = models.IntegerField(default=0)
+
+	class Meta:
+		verbose_name = 'Chouce'
+		verbose_name_plural = 'Choices'
+
+	def __str__(self):
+		return self.choice_text
+
+	@dd.action(help_text="Click here to vote this.")
+	def vote(self, ar):
+		def yes(ar):
+			self.votes += 1
+			self.save()
+			return ar.success(
+				"Thank you for voting %s" %self, 
+				"Voted!", refresh=True)
+		if self.votes > 0:
+			msg = "%s has already %d votes!" % (self, self.votes)
+			msg += "\nDo you still want to vote for it?"
+			return ar.confirm(yes, msg)
+		return yes(ar)	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Pick up from here

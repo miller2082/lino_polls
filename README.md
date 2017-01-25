@@ -17,3 +17,14 @@ Continuing from :: The settings.py file
 Finished setting.py and began models.py of tutorial.
 
 The use of yield and generators is vague to me, so I must internalize it tonight.
+
+
+01/25/2017
+
+Transcribed polls/models.py 
+created and transcribed polls/desktop.py
+Changed database structure with initdb_demo command
+Next: Creating a Demo Fixture
+
+
+
