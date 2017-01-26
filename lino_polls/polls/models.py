@@ -7,9 +7,9 @@ from lino.api import dd
 
 
 @python_2_unicode_compatible
-class Question(models.Model):
-	question_text = models.CharField(max_length=200)
-	pub_date = models.DateTimeField('date published')
+class Question(dd.Model):
+	question_text = models.CharField("Question text", max_length=200)
+	pub_date = models.DateTimeField('Date published', default=dd.today)
 	hidden = models.BooleanField(
 		"Hidden",
 		help_text="Whether this poll should not be shown in the main window.",
@@ -27,13 +27,13 @@ class Question(models.Model):
 		
 
 @python_2_unicode_compatible
-class Choice(models.Model):
+class Choice(dd.Model):
 	question = models.ForeignKey(Question, on_delete=models.CASCADE)
-	choice_text = models.CharField(max_length=200)
-	votes = models.IntegerField(default=0)
+	choice_text = models.CharField("Choice text", max_length=200)
+	votes = models.IntegerField("No. of votes", default=0)
 
 	class Meta:
-		verbose_name = 'Chouce'
+		verbose_name = 'Choice'
 		verbose_name_plural = 'Choices'
 
 	def __str__(self):
@@ -45,7 +45,7 @@ class Choice(models.Model):
 			self.votes += 1
 			self.save()
 			return ar.success(
-				"Thank you for voting %s" %self, 
+				"Thank you for voting %s" % self, 
 				"Voted!", refresh=True)
 		if self.votes > 0:
 			msg = "%s has already %d votes!" % (self, self.votes)

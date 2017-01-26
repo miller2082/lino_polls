@@ -1,8 +1,24 @@
-a (virtualenv for project which should stay in local machine)
+a # (virtualenv for project which should stay in local machine)
+
 *.DS_Store
 *.pyc
 __pycache__
 *~
 db.sqlite3      # Don't want this in Github or production environment.
-/static
+static/
+*.pyo
+# The following is from django/django guide for.gitignore
+*.egg-info
+*.pot
+*.py[co]
+.tox/
+MANIFEST
+dist/
+docs/_build/
+docs/locale/
+node_modules/
+tests/coverage_html/
+tests/.coverage
+build/
+tests/report/
 

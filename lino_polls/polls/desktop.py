@@ -6,7 +6,7 @@ class Questions(dd.Table):
 
 	detail_layout = """
 	id question_text
-	hidden pubdate
+	hidden pub_date
 	ChoiceByQuestion
 	"""
 
