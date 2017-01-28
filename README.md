@@ -56,6 +56,13 @@ tests/report/
 
 -----------------------------------------------------------------------------
 
+1/27/2017
+
+Added admin_main.htmo to a new directory config:
+
+$ mkdir lino_polls/config
+$ touch admin_main.html
+
 
 
 
